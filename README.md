@@ -11,12 +11,20 @@ This is a prototype and proof of concept.  In particular evalualte amethods and 
 
 ###  Set up local python environment
 
-python3 -m venv ~/.we
-source ~/.we/bin/activate
-make all
-pip freeze > requirements.txt
+Have to use conda for geopandas
+```
+conda create -n geo_env
+conda activate geo_env
+conda config --env --add channels conda-forge
+conda config --env --set channel_priority strict
+conda install python=3 geopandas
 
 ```
+
+Install geopandas, flask and urllib3 - in anaconada navigator
+
+Build Dockerfile with anaconda
+
 
 cd  flaskweather
 docker build -t flaskweather .

@@ -1,21 +1,16 @@
 # Set base image (host OS)
-FROM python:3.9
+FROM continuumio/miniconda3
 
-EXPOSE 8000/tcp
+RUN /opt/conda/bin/conda config --add channels conda-forge && /opt/conda/bin/conda update -y conda \
+    && /opt/conda/bin/conda install -y geopandas flask urllib3
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the dependencies file to the working directory
-COPY requirements.txt .
+EXPOSE 8000
 
-# Install any dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the content of the local src directory to the working directory
 COPY . .
 
-#CMD ["gunicorn"  , "-b", "0.0.0.0:8000", "wsgi:server"]
+CMD ["python", "wsgi.py"]
 
 
 
