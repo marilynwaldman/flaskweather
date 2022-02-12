@@ -1,10 +1,8 @@
 install:
-    mkdir -p ~/miniconda3
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-    bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-    rm -rf ~/miniconda3/miniconda.sh   
-	~/miniconda3/bin/conda config --add channels conda-forge && ~/miniconda3/bin/conda update -y conda \
-    && ~/miniconda3/bin/conda install -y geopandas flask urllib3
+
+    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh \
+    && /bin/bash ~/miniconda.sh -b -p $HOME/conda
+    conda install -y geopandas flask urllib3
 test:
 	#python -m pytest -vv test_application.py
 
